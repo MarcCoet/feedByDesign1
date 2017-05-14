@@ -1,0 +1,30 @@
+[
+  {
+    "price": 3,
+    "name": "Under construction",
+    "description": "Even if you are not ready to promote your business, you can have your presence online",
+    "webFunc": [
+      "introduce your business to the web",
+      "display your contact information online",
+      "spam protection for your email address",
+      "full SEO configuration"
+    ],
+    "otherFunc": [
+      "5 email addresses"
+    ]
+  },
+  {
+    "price": 5,
+    "name": "Under construction",
+    "description": "Even if you are not ready to promote your business, you can have your presence online",
+    "webFunc": [
+      "introduce your business to the web",
+      "display your contact information online",
+      "spam protection for your email address",
+      "full SEO configuration"
+    ],
+    "otherFunc": [
+      "5 email addresses"
+    ]
+  }
+]

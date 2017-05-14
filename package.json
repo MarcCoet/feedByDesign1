@@ -1,0 +1,50 @@
+{
+  "name": "feed-by-design",
+  "version": "1.0.0",
+  "description": "",
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FeedbyDesign/feed-by-design.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/MarcCoet/trickster-lab/issues"
+  },
+  "homepage": "https://github.com/MarcCoet/trickster-lab#readme",
+  "dependencies": {
+    "es6-promise": "^4.1.0",
+    "gatsby": "canary",
+    "gatsby-link": "canary",
+    "gatsby-plugin-catch-links": "canary",
+    "gatsby-plugin-glamor": "canary",
+    "gatsby-plugin-google-analytics": "canary",
+    "gatsby-plugin-manifest": "canary",
+    "gatsby-plugin-offline": "canary",
+    "gatsby-plugin-sharp": "canary",
+    "gatsby-remark-autolink-headers": "canary",
+    "gatsby-remark-copy-linked-files": "canary",
+    "gatsby-remark-prismjs": "canary",
+    "gatsby-remark-responsive-iframe": "canary",
+    "gatsby-remark-responsive-image": "canary",
+    "gatsby-remark-smartypants": "canary",
+    "gatsby-source-filesystem": "canary",
+    "gatsby-transformer-json": "canary",
+    "gatsby-transformer-remark": "canary",
+    "gatsby-transformer-sharp": "canary",
+    "gatsby-transformer-yaml": "canary",
+    "isomorphic-fetch": "^2.2.1",
+    "react-helmet": "^5.0.3",
+    "react-typography": "^0.15.0",
+    "slug": "^0.9.1",
+    "typeface-roboto": "^0.0.22",
+    "typography": "0.15.x",
+    "typography-breakpoint-constants": "^0.14.0"
+  }
+}
