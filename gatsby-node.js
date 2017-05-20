@@ -62,6 +62,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           component: slash(projectTemplate),
           context: {
             id: edge.node.id,
+            galleryPathRegex: `/portfolio.${edge.node.frontmatter.slug}.gallery/i`,
           },
         })
       })
