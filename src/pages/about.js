@@ -10,6 +10,7 @@ import {
   COLOR4
 } from "../utils/colors"
 
+// TODO: import pics with graphQL
 import photoFox from '../../data/img/photo-fox.jpg'
 import photoDragonfly from '../../data/img/photo-dragonfly.jpg'
 import pictoFox from '../../data/img/fox-110.png'
@@ -22,9 +23,9 @@ const foxProfile = {
   quote: 'Marc is curious, smart and ressourceful. He is passionate about learning and aware of the world around. He can always find the right word with a personal touch of creativity.',
   sign: 'Tess',
   skills: [
-    'Positioning Strategy',
+    'Branding Strategy',
     'Information Architecture',
-    'Technology'
+    'Websites'
   ]
 }
 const dragonflyProfile = {
@@ -49,25 +50,29 @@ class About extends React.Component {
   render() {
 
     const Profile = ({ profile }) => (
-      <div class="uk-width-small-6-10 uk-width-8-10 uk-container-center">
+      <div css={{
+          maxWidth: 300,
+          width: `80%`
+        }}
+      >
         <img src={profile.photo} alt={profile.name} />
-        <img src={profile.picto} alt={profile.name} class="picto__presentation" />
-        <h3>{profile.name}</h3>
+        <img src={profile.picto} alt={profile.name} />
+        <h2>{profile.name}</h2>
         <blockquote>
           <p>
             {profile.quote}
           </p>
           <small>{profile.sign}</small>
         </blockquote>
-        <div class="uk-grid-margin">
+        <div>
           {
             profile.skills.map((skill)=>{
-              return <h3 id={skill} class="subtitle__presentation">{skill}</h3>
+              return <h4 id={skill}>{skill}</h4>
             })
           }
 
         </div>
-        {profile.link ? <a class="site-link" href={profile.link.url} target="_blank">{profile.link.name}</a> : null}
+        {profile.link ? <a href={profile.link.url} target="_blank">{profile.link.name}</a> : null}
       </div>
     )
 
@@ -83,8 +88,22 @@ class About extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/about/" />
         </Helmet>
 
-        <Profile id='fox' profile={foxProfile} />
-        <Profile id='dragonfly' profile={dragonflyProfile} />
+        <h1>Feed by Design</h1>
+        <p css={{textAlign: `center`}}>
+          Passionate individuals with complementary skills
+        </p>
+
+        <div css={{
+            display: `flex`,
+            flexFlow: `row wrap`,
+            justifyContent: `space-around`,
+            margin: `auto`,
+            maxWidth: 900,
+          }}
+        >
+          <Profile id='fox' profile={foxProfile} />
+          <Profile id='dragonfly' profile={dragonflyProfile} />
+        </div>
 
 
 

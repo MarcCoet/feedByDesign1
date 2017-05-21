@@ -72,7 +72,9 @@ class DefaultLayout extends React.Component {
         <Menu />
         <div
           css={{
-            flexGrow: 1
+            flexGrow: 1,
+            display: `flex`,
+            flexFlow: `column`,
           }}
         >
           {this.props.children()}

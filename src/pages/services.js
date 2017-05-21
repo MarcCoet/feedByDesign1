@@ -9,12 +9,22 @@ import {
   COLOR4
 } from "../utils/colors"
 
+import illuFoxAndDragonfly from '../../data/img/dragonfly-110.png'
 
 class Services extends React.Component {
   render() {
 
     return (
-      <div>
+      <div
+        css={{
+          flexGrow: 1,
+          display: `flex`,
+          flexFlow: `column`,
+          alignItems: `center`,
+          justifyContent: `center`,
+
+        }}
+      >
         <Helmet>
           <html lang="en" />
           <title>Services</title>
@@ -46,22 +56,29 @@ export default Services
 
 export const pageQuery = graphql`
 query Services {
-  strategyMd: markdownRemark (frontmatter: {reference: {eq: "services/strategy"}}) {
-    id
-    html
-    children {
-      id
-    }
-    parent {
-      id
-    }
-    content
-    frontmatter {
-    	image {
-        childImageSharp {
-          responsiveResolution(width: 75, height: 75) {
-            src
-            srcSet
+  allMarkdownRemark (id: {regex: "/data.services/i"}) {
+    edges {
+      node {
+        id
+        html
+        children {
+          id
+        }
+        parent {
+          id
+        }
+        content
+        frontmatter {
+          title
+          image {
+            childImageSharp {
+              responsiveSizes(maxWidth: 100) {
+                base64
+                aspectRatio
+                src
+                srcSet
+              }
+            }
           }
         }
       }

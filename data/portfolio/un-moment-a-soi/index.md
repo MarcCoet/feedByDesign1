@@ -1,8 +1,10 @@
 ---
 slug: un-moment-a-soi
 name: Un moment à soi
-metaDescription: Un moment à soi
+date: 2015-03-25
+metaDescription: Logo, identité visuelle, site web, réalisation d'illustrations et shooting photo pour une estéticienne basée à Uccle.
 url: 'http://unmomentasoi.eu/'
+facebook: 'https://www.facebook.com/unmomentasoi1/'
 imgCover: 'umsa-1000px.png'
 logoColor: 'LOGO_base-line.png'
 logoNB: 'logo-umas-100px.png'

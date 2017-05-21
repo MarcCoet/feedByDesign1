@@ -31,48 +31,53 @@ const options = {
       background: COLOR4,
     },
     h1: {
-      ...scale(0.809),
+      // ...scale(0.809),
       textAlign: `center`,
-      color: COLOR3
+      // color: COLOR3
     },
     h4: {
-      color: COLOR2
+      // color: COLOR2
     },
     button: {
-      border: `none`
+      // border: `none`
     },
     section: {
-      display: `flex`,
-      flexFlow: `column`,
-      alignItems: `center`,
+      // display: `flex`,
+      // flexFlow: `column`,
+      // alignItems: `center`,
     },
     p: {
-      marginBottom: rhythm(0.382),
-      ':hover': {
-        color: COLOR2,
-      },
+      // marginBottom: rhythm(0.382),
+      // ':hover': {
+      //   color: COLOR2,
+      // },
     },
     "h1,h2,h3,h4,h5,h6": {
-      lineHeight: 1.168
+      // lineHeight: 1.168
     },
     a: {
-      color: `inherit`,
-      textDecoration: `none`,
-      borderBottom: `thick solid`,
-      cursor: `pointer`,
+      // color: `inherit`,
+      // textDecoration: `none`,
+      // borderBottom: `thick solid`,
+      // cursor: `pointer`,
     },
     'a:hover': {
-      borderColor: COLOR2,
+      // borderColor: COLOR2,
     },
     img: {
-      marginBottom: 0,
+      // marginBottom: 0,
     },
-    [TABLET_MEDIA_QUERY]: {
-      // Make baseFontSize on mobile 18px.
-      html: {
-        // fontSize: `${18 / 20 * 100}%`,
-      },
+    blockquote: {
+      borderLeft: `thick solid ${COLOR1}`,
+      margin: `${rhythm(1)} 0`,
+      paddingLeft: rhythm(1/2),
     },
+    // [TABLET_MEDIA_QUERY]: {
+    //   // Make baseFontSize on mobile 18px.
+    //   html: {
+    //     // fontSize: `${18 / 20 * 100}%`,
+    //   },
+    // },
     // [MOBILE_MEDIA_QUERY]: {
     //   // Make baseFontSize on mobile 16px.
     //   html: {
