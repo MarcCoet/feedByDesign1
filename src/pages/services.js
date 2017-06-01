@@ -39,7 +39,7 @@ class Services extends React.Component {
           <li>
             <div
               dangerouslySetInnerHTML={{
-                __html: this.props.data.strategyMd.html,
+                __html: this.props.data.allMarkdownRemark.html,
               }}
             />
           </li>
@@ -61,13 +61,6 @@ query Services {
       node {
         id
         html
-        children {
-          id
-        }
-        parent {
-          id
-        }
-        content
         frontmatter {
           title
           image {
