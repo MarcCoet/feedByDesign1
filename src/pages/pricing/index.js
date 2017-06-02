@@ -10,12 +10,32 @@ import {
   COLOR4
 } from "../../utils/colors"
 
+const ballCss = {
+  display: `flex`,
+  alignItems: `center`,
+  justifyContent: `center`,
+  width: 120,
+  height: 120,
+  borderRadius: `50%`,
+  background: COLOR2,
+  color: COLOR4,
+  margin: 10,
+
+}
 
 class Pricing extends React.Component {
   render() {
 
     return (
-      <div>
+      <div
+        css={{
+          flexGrow: 1,
+          display: `flex`,
+          alignItems: `center`,
+          justifyContent: `center`,
+
+        }}
+      >
         <Helmet>
           <html lang="en" />
           <title>Pricing</title>
@@ -26,13 +46,16 @@ class Pricing extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/pricing/" />
         </Helmet>
 
-        <Link to={'/pricing/design/'}>
-          Design Pricing
-        </Link>
-        <br/>
-        <Link to={'/pricing/design/'}>
-          ! Web Pricing !
-        </Link>
+        <div css={ballCss}>
+          <Link to={'/pricing/design/'}>
+            Design Pricing
+          </Link>
+        </div>
+        <div css={ballCss}>
+          <Link to={'/pricing/design/'}>
+            ! Web Pricing !
+          </Link>
+        </div>
 
       </div>
     )
