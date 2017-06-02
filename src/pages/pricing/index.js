@@ -1,14 +1,14 @@
 import React from 'react'
 import { Helmet } from "react-helmet"
+import Link from 'gatsby-link'
 
-
-import { rhythm, scale } from "../utils/typography"
+import { rhythm, scale } from "../../utils/typography"
 import {
   COLOR1,
   COLOR2,
   COLOR3,
   COLOR4
-} from "../utils/colors"
+} from "../../utils/colors"
 
 
 class Pricing extends React.Component {
@@ -20,31 +20,19 @@ class Pricing extends React.Component {
           <html lang="en" />
           <title>Pricing</title>
           <meta property="og:title" content="Pricing | Feed by Design" />
-          <meta name="description" content="Affordable solutions for freelances, entrepreneurs, artists, ..." />
-          <meta property="og:description" content="Affordable solutions for freelances, entrepreneurs, artists, ..." />
+          <meta name="description" content="Affordable solutions for freelancers, entrepreneurs, artists, ..." />
+          <meta property="og:description" content="Affordable solutions for freelancers, entrepreneurs, artists, ..." />
           <link rel="canonical" href="https://www.feedbydesign.com/pricing/" />
           <meta property="og:url" content="https://www.feedbydesign.com/pricing/" />
         </Helmet>
 
-        <ul>
-          {
-            this.props.data.pricingDesign.edges.map(({ node })=>{
-              return (
-                <li>{node.price}</li>
-              )
-            })
-          }
-        </ul>
-
-        <ul>
-          {
-            this.props.data.pricingWebsites.edges.map(({ node })=>{
-              return (
-                <li>{node.price}</li>
-              )
-            })
-          }
-        </ul>
+        <Link to={'/pricing/design/'}>
+          Design Pricing
+        </Link>
+        <br/>
+        <Link to={'/pricing/design/'}>
+          ! Web Pricing !
+        </Link>
 
       </div>
     )
@@ -53,38 +41,38 @@ class Pricing extends React.Component {
 
 export default Pricing
 
-export const pageQuery = graphql`
-query Pricing {
-  pricingDesign: allPricingDesignJson (
-    sortBy: {order: ASC, fields: [price]}
-  ){
-    edges {
-      node {
-        id
-        price
-        logo
-        businessCard
-        files
-        charter
-      }
-    }
-  },
-  pricingWebsites: allPricingWebsitesJson (
-    sortBy: {order: ASC, fields: [price]}
-  ){
-    edges {
-      node {
-        id
-        price
-        name
-        description
-        webFunc
-        otherFunc
-      }
-    }
-  }
-}
-`
+// export const pageQuery = graphql`
+// query Pricing {
+//   pricingDesign: allPricingDesignJson (
+//     sortBy: {order: ASC, fields: [price]}
+//   ){
+//     edges {
+//       node {
+//         id
+//         price
+//         logo
+//         businessCard
+//         files
+//         charter
+//       }
+//     }
+//   },
+//   pricingWebsites: allPricingWebsitesJson (
+//     sortBy: {order: ASC, fields: [price]}
+//   ){
+//     edges {
+//       node {
+//         id
+//         price
+//         name
+//         description
+//         webFunc
+//         otherFunc
+//       }
+//     }
+//   }
+// }
+// `
 
 // query IndexRouteQuery {
 //   allMarkdownRemark(

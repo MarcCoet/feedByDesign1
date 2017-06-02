@@ -45,7 +45,7 @@ class DefaultLayout extends React.Component {
           position: `relative`,
           display: `flex`,
           flexFlow: `column`,
-          height: `100vh`
+          minHeight: `100vh`
         }}
       >
         <Helmet
