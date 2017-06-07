@@ -14,23 +14,27 @@ class ProjectTemplate extends React.Component {
 
   render() {
     const projectDetails = this.props.data.md.frontmatter
-    const logoColor = projectDetails.logoColor.childImageSharp.responsiveSizes
-    const logoNB = projectDetails.logoNB.childImageSharp.responsiveSizes
-    const imgScreenLarge = projectDetails.imgScreenLarge.childImageSharp.responsiveSizes
-    const imgScreenMedium = projectDetails.imgScreenMedium.childImageSharp.responsiveSizes
-    const imgScreenSmall = projectDetails.imgScreenSmall.childImageSharp.responsiveSizes
-    const screenLarge = { ...this.props.data.screenLarge.responsiveSizes }
-    const screenMedium = { ...this.props.data.screenMedium.responsiveSizes }
-    const screenSmall = { ...this.props.data.screenSmall.responsiveSizes }
-    const gallery = this.props.data.gallery.edges.map(({ node })=>{
+    const logoColor = projectDetails.logoColor ? projectDetails.logoColor.childImageSharp.responsiveSizes: null
+    const logoNB = projectDetails.logoNB ? projectDetails.logoNB.childImageSharp.responsiveSizes : null
+    const screenImage = projectDetails.screenImage ? projectDetails.screenImage.childImageSharp.responsiveSizes : null
+    // const imgScreenLarge = projectDetails.imgScreenLarge.childImageSharp.responsiveSizes
+    // const imgScreenMedium = projectDetails.imgScreenMedium.childImageSharp.responsiveSizes
+    // const imgScreenSmall = projectDetails.imgScreenSmall.childImageSharp.responsiveSizes
+    // const screenLarge = { ...this.props.data.screenLarge.responsiveSizes }
+    // const screenMedium = { ...this.props.data.screenMedium.responsiveSizes }
+    // const screenSmall = { ...this.props.data.screenSmall.responsiveSizes }
+    const gallery = this.props.data.gallery ?
+      this.props.data.gallery.edges.map(({ node })=>{
       const id = node.id
       return {id, ...node.responsiveSizes}
-    })
+    }) : null
+    const borderColor = projectDetails.colors[0]
+    const textColor = projectDetails.colors[1] || projectDetails.colors[0]
 
     return (
       <div
         css={{
-          border: `5px solid ${projectDetails.colors[0]}`,
+          border: `5px solid ${borderColor}`,
           margin: 30
         }}
       >
@@ -51,7 +55,7 @@ class ProjectTemplate extends React.Component {
             justifyContent: `space-around`,
             alignItems: `center`,
             ' *': {
-              color: `${projectDetails.colors[1]}`
+              color: `${textColor}`
             }
           }}
         >
@@ -68,7 +72,8 @@ class ProjectTemplate extends React.Component {
               },
             }}
           >
-            <div css={{ // LOGOS
+            {logoColor &&
+              <div css={{ // LOGOS
                 display: `flex`,
                 alignItems: `flex-end`,
 
@@ -83,11 +88,12 @@ class ProjectTemplate extends React.Component {
                 srcSet={logoNB.srcSet}
                 sizes={`(min-width: 500px) 50px, 25px`}
               />
-            </div>
+              </div>
+            }
 
             <div css={{
                 display: `flex`,
-                flexFlow: `row nowrap`
+                flexFlow: `row wrap`,
               }}
             >
               { // COLOR BALLS
@@ -108,13 +114,13 @@ class ProjectTemplate extends React.Component {
 
             <h3 css={{
                 marginBottom: rhythm(1/2),
-              }}>
+              }}
+            >
               {projectDetails.name}
             </h3>
-            <p>
-              {projectDetails.url}<br />
-              {projectDetails.url}
-            </p>
+            {projectDetails.url && <p>{projectDetails.url}</p>}
+            {projectDetails.facebook && <p>{projectDetails.facebook}</p>}
+            {projectDetails.linkedIn && <p>{projectDetails.linkedIn}</p>}
             <p css={{
 
               }}
@@ -131,47 +137,14 @@ class ProjectTemplate extends React.Component {
             </p>
           </div>
 
-
-          <div
-            css={{ // WEB SCREENS
-              width: `80vw`,
-              height: `60vw`,
-              position: `relative`,
-              margin: rhythm(1),
-              [presets.Desktop]: {
-                width: `40vw`,
-                height: `30vw`,
-              },
-            }}
-            >
+          {screenImage &&
             <img
-              src={screenLarge.src}
-              srcSet={screenLarge.srcSet}
-              css={{
-                position: `absolute`,
-                width: `100%`,
-                zIndex: 2,
-              }}
-              />
-            <div
-              css={{
-                position: `relative`,
-                width: `100%`,
-                height: `70%`,
-                overflow: `hidden`,
-              }}
-              >
-              <img
-                src={imgScreenLarge.src}
-                srcSet={imgScreenLarge.srcSet}
-                css={{
-                  position: `absolute`,
-                  top: 0,
-                  left: 0,
-                }}
-                />
-            </div>
-          </div>
+            src={screenImage.src}
+            srcSet={screenImage.srcSet}
+            sizes={`${presets.desktop} 40vw, 80vw`}
+            />
+          }
+
         </div>
 
 
@@ -183,7 +156,7 @@ class ProjectTemplate extends React.Component {
             marginBottom: 20,
           }}
         >
-          {
+          {gallery &&
             gallery.map((image)=>{
               return (
                 <img
@@ -211,6 +184,81 @@ class ProjectTemplate extends React.Component {
 
 export default ProjectTemplate
 
+// <div
+//   css={{ // WEB SCREENS
+//     width: `80vw`,
+//     height: `60vw`,
+//     position: `relative`,
+//     margin: rhythm(1),
+//     [presets.Desktop]: {
+//       width: `40vw`,
+//       height: `30vw`,
+//     },
+//   }}
+//   >
+//   <img
+//     src={screenLarge.src}
+//     srcSet={screenLarge.srcSet}
+//     css={{
+//       position: `absolute`,
+//       width: `100%`,
+//       zIndex: 2,
+//     }}
+//     />
+//   <div
+//     css={{
+//       position: `relative`,
+//       width: `100%`,
+//       height: `70%`,
+//       overflow: `hidden`,
+//     }}
+//     >
+//     {imgScreenLarge &&
+//       <img
+//       src={imgScreenLarge.src}
+//       srcSet={imgScreenLarge.srcSet}
+//       css={{
+//         position: `absolute`,
+//         top: 0,
+//         left: 0,
+//       }}
+//       />
+//     }
+//   </div>
+// </div>
+//
+// imgScreenLarge {
+//   childImageSharp {
+//     responsiveSizes (maxWidth: 1000) {
+//       base64
+//       aspectRatio
+//       src
+//       srcSet
+//     }
+//   }
+// }
+// imgScreenMedium {
+//   childImageSharp {
+//     responsiveSizes (maxWidth: 450) {
+//       base64
+//       aspectRatio
+//       src
+//       srcSet
+//     }
+//   }
+// }
+// imgScreenSmall {
+//   childImageSharp {
+//     responsiveSizes (maxWidth: 170) {
+//       base64
+//       aspectRatio
+//       src
+//       srcSet
+//     }
+//   }
+// }
+
+
 // <img
 //   src={screenMedium.src}
 //   srcSet={screenMedium.srcSet}
@@ -232,6 +280,8 @@ export const pageQuery = graphql`
         slug
         metaDescription
         url
+        facebook
+        linkedIn
         packName
         colors
         logoColor {
@@ -254,29 +304,9 @@ export const pageQuery = graphql`
             }
           }
         }
-        imgScreenLarge {
+        screenImage {
           childImageSharp {
             responsiveSizes (maxWidth: 1000) {
-              base64
-              aspectRatio
-              src
-              srcSet
-            }
-          }
-        }
-        imgScreenMedium {
-          childImageSharp {
-            responsiveSizes (maxWidth: 450) {
-              base64
-              aspectRatio
-              src
-              srcSet
-            }
-          }
-        }
-        imgScreenSmall {
-          childImageSharp {
-            responsiveSizes (maxWidth: 170) {
               base64
               aspectRatio
               src

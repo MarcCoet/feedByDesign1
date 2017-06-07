@@ -27,11 +27,23 @@ class Portfolio extends React.Component {
         </Helmet>
 
         <h2>Portfolio</h2>
-        <ul>
+        <ul
+          css={{
+
+          }}
+        >
           {
             this.props.data.allMarkdownRemark.edges.map(({ node })=>{
               return (
-                <li key={node.id}><Link to={`/portfolio/${node.frontmatter.slug}/`}>{node.frontmatter.name}</Link></li>
+                <li key={node.id}>
+                  <Link to={`/portfolio/${node.frontmatter.slug}/`}>
+                    <img
+                      src={node.frontmatter.imgCover.childImageSharp.responsiveSizes.src}
+                      srcSet={node.frontmatter.imgCover.childImageSharp.responsiveSizes.srcSet}
+                      sizes={`200px`}
+                    />
+                  </Link>
+                </li>
               )
             })
           }
@@ -45,13 +57,26 @@ export default Portfolio
 
 export const pageQuery = graphql`
 query Portfolio {
-  allMarkdownRemark (id: {regex: "/portfolio/i"}) {
+  allMarkdownRemark (
+    id: {regex: "/portfolio/i"},
+    sortBy: {fields: [frontmatter___date], order: DESC}
+  ) {
     edges {
       node {
         id
         frontmatter {
           name
           slug
+          imgCover {
+            childImageSharp {
+              responsiveSizes (maxWidth: 600) {
+                base64
+                aspectRatio
+                src
+                srcSet
+              }
+            }
+          }
         }
       }
     }
