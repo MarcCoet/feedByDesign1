@@ -26,15 +26,17 @@ class DesignPricing extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/pricing/design/" />
         </Helmet>
 
-        <ul>
+        <div>
           {
             this.props.data.allMarkdownRemark.edges.map(({ node })=>{
               return (
-                <li>{node.frontmatter.pack}</li>
+                <div>
+                  {node.frontmatter.pack}
+                </div>
               )
             })
           }
-        </ul>
+        </div>
 
 
       </div>
