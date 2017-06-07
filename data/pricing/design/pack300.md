@@ -1,6 +1,8 @@
 ---
 pack: Wordmark
 price: 300
+metaTitle: The Wordmark Pack
+metaDescription: Simple wordmark logo to get to work immediately while taking time to define your business further
 ---
 
 ### Wordmark
