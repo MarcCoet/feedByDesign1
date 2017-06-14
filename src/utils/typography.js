@@ -66,6 +66,7 @@ const options = {
     },
     img: {
       // marginBottom: 0,
+      display: `block`,
     },
     blockquote: {
       borderLeft: `thick solid ${COLOR1}`,

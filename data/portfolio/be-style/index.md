@@ -10,6 +10,7 @@ logoColor: bestyle-logo-color.png
 logoNB: bestyle-logo-nb.png
 screenImage: null
 packName: Starter
+hide: true
 colors:
   - '#000000'
 ---

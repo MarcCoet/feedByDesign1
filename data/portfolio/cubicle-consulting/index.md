@@ -10,6 +10,7 @@ logoColor: null
 logoNB: null
 screenImage: null
 packName: Starter
+hide: true
 colors:
   - '#2baee5'
   - '#005b94'

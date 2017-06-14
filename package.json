@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MarcCoet/trickster-lab#readme",
   "dependencies": {
+    "array.prototype.move": "^0.0.4",
     "es6-promise": "^4.1.0",
     "gatsby": "alpha20",
     "gatsby-link": "alpha20",

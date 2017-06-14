@@ -10,6 +10,7 @@ logoColor: null
 logoNB: null
 screnImage: PORTFOLIO_ecran_olivia-carpentier.png
 packName: Starter
+notOnTop: true
 colors:
   - '#ffe575'
   - '#212131'
