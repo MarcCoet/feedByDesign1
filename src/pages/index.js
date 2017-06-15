@@ -22,7 +22,6 @@ const contact = {
 
 class Index extends React.Component {
   render() {
-    console.log(this.props);
     const indexImage = this.props.data.imageSharp.responsiveSizes
 
     // // Outputs array of images with 'sizes' key {big: ..., tiny: ...}

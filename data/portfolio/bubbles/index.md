@@ -1,6 +1,6 @@
 ---
 slug: bubbles
-name: "Bubble’s"
+name: "Bubble s"
 date: "2016-11-20"
 metaDescription: 'Logo, identité visuelle, aide conseils visuels Facebook,…'
 url: null
