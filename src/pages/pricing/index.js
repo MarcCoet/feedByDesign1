@@ -2,6 +2,8 @@ import React from 'react'
 import { Helmet } from "react-helmet"
 import Link from 'gatsby-link'
 
+import PriceParents from '../../components/PriceParents'
+
 import { rhythm, scale } from "../../utils/typography"
 import {
   COLOR1,
@@ -19,19 +21,9 @@ class Pricing extends React.Component {
         css={{
           flexGrow: 1,
           display: `flex`,
+          flexFlow: `column`,
           alignItems: `center`,
           justifyContent: `center`,
-          '> div': {
-            display: `flex`,
-            alignItems: `center`,
-            justifyContent: `center`,
-            width: 120,
-            height: 120,
-            borderRadius: `50%`,
-            background: COLOR2,
-            color: COLOR4,
-            margin: 10,
-          }
         }}
       >
         <Helmet>
@@ -44,15 +36,11 @@ class Pricing extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/pricing/" />
         </Helmet>
 
+        <PriceParents diameter="120" />
+
         <div>
-          <Link to={'/pricing/design/'}>
-            Design Pricing
-          </Link>
-        </div>
-        <div>
-          <Link to={'/pricing/design/'}>
-            ! Web Pricing !
-          </Link>
+          Only for starters<br/>
+          Ask for a quote
         </div>
 
       </div>

@@ -15,7 +15,9 @@ import {
 
 class Portfolio extends React.Component {
   componentWillMount() {
-    this.projects = this.props.data.allMarkdownRemark.edges
+    this.projects = this.props.data.projects.edges
+    // reference to Feed by Design project
+    this.feedProject = this.props.data.feedProject
     // delete from array unwanted projects
     for (let i = this.projects.length-1; i >= 0 ; i--) {
       if (this.projects[i].node.frontmatter.hide) this.projects.splice(i, 1)
@@ -90,9 +92,6 @@ class Portfolio extends React.Component {
   }
 
   render() {
-
-
-
     return (
       <div>
         <Helmet>
@@ -105,26 +104,40 @@ class Portfolio extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/portfolio/" />
         </Helmet>
 
-        <h2>Portfolio</h2>
         <ul
           css={{
             listStyle: `none`,
-            margin: 0,
+            margin: `auto`,
+            maxWidth: 900,
             display: `flex`,
             flexFlow: `row wrap`,
             justifyContent: `center`,
             ' li': {
               margin: 0,
+              position: `relative`,
+              ':hover': {
+                ':after': {
+                  content: '""',
+                  position: `absolute`,
+                    top: 0,
+                  width: `100%`,
+                  height: `100%`,
+                  background: `rgba(255, 255, 255, 0.5)`,
+                  pointerEvents: `none`,
+                },
+              }
             },
             [presets.Tablet]: {
               // flexFlow: `row wrap`,
-            }
+            },
+
           }}
         >
           <li
             key={this.projects[0].node.id}
             css={{ //Big image left
               width: `61.8%`,
+
             }}
           >
             <Link to={`/portfolio/${this.projects[0].node.frontmatter.slug}/`}>
@@ -132,6 +145,7 @@ class Portfolio extends React.Component {
                 src={this.projects[0].node.frontmatter.imgCover.childImageSharp.responsiveSizes.src}
                 srcSet={this.projects[0].node.frontmatter.imgCover.childImageSharp.responsiveSizes.srcSet}
               />
+
             </Link>
           </li>
           <div
@@ -181,6 +195,14 @@ class Portfolio extends React.Component {
                     />
                   </Link>
                 </li>
+                <li key={this.feedProject.id}>
+                  <Link to={`/portfolio/${this.feedProject.frontmatter.slug}/`}>
+                    <img
+                      src={this.feedProject.frontmatter.imgCover.childImageSharp.responsiveSizes.src}
+                      srcSet={this.feedProject.frontmatter.imgCover.childImageSharp.responsiveSizes.srcSet}
+                    />
+                  </Link>
+                </li>
 
               </div>
             </div>
@@ -189,6 +211,7 @@ class Portfolio extends React.Component {
             css={{
               display: `flex`,
               flexFlow: `row wrap`,
+              marginTop: rhythm(1/2),
               ' > li': {
                 width: `20%`
               }
@@ -219,7 +242,7 @@ export default Portfolio
 
 export const pageQuery = graphql`
 query Portfolio {
-  allMarkdownRemark (
+  projects: allMarkdownRemark (
     id: {regex: "/portfolio/i"},
     sortBy: {fields: [frontmatter___date], order: DESC}
   ) {
@@ -231,6 +254,7 @@ query Portfolio {
           slug
           notOnTop
           hide
+          date
           imgCover {
             childImageSharp {
               responsiveSizes (maxWidth: 600) {
@@ -240,6 +264,27 @@ query Portfolio {
                 srcSet
               }
             }
+          }
+        }
+      }
+    }
+  }
+  feedProject: markdownRemark (
+    id: {regex: "/portfolio.feed-by-design/i"}
+  ) {
+    id
+    frontmatter {
+      name
+      slug
+      notOnTop
+      hide
+      imgCover {
+        childImageSharp {
+          responsiveSizes (maxWidth: 600) {
+            base64
+            aspectRatio
+            src
+            srcSet
           }
         }
       }

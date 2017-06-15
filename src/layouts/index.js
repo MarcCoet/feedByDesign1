@@ -69,7 +69,7 @@ class DefaultLayout extends React.Component {
             />
         </Helmet>
 
-        <Menu />
+        <Menu path={this.props.location.pathname} />
         <div
           css={{
             flexGrow: 1,

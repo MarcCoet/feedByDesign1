@@ -2,6 +2,8 @@ import React from 'react'
 import { Helmet } from "react-helmet"
 import Link from 'gatsby-link'
 
+import PriceParents from '../../../components/PriceParents'
+
 import { rhythm, scale } from "../../../utils/typography"
 import {
   COLOR1,
@@ -19,46 +21,9 @@ class DesignPricing extends React.Component {
         css={{
           flexGrow: 1,
           display: `flex`,
-          flexFlow: `row wrap`,
+          flexFlow: `column`,
           alignItems: `center`,
           justifyContent: `center`,
-          '> div': {
-            position: `relative`,
-          },
-          '> div > div:first-child': {
-            position: `relative`,
-            display: `flex`,
-            alignItems: `center`,
-            justifyContent: `center`,
-            width: 120,
-            height: 120,
-            borderRadius: `50%`,
-            background: COLOR2,
-            color: COLOR4,
-            margin: 10,
-            zIndex: 1,
-            ':hover': {
-              zIndex: 0,
-            }
-          },
-          '> div > div:last-child': {
-            position: `absolute`,
-              top: 10,
-              left: 10,
-            display: `flex`,
-            alignItems: `center`,
-            justifyContent: `center`,
-            width: 120,
-            height: 120,
-            borderRadius: `50%`,
-            background: COLOR3,
-            color: COLOR4,
-            margin: 10,
-            zIndex: 0,
-            ':hover': {
-              zIndex: 2,
-            }
-          }
         }}
       >
         <Helmet>
@@ -71,24 +36,75 @@ class DesignPricing extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/pricing/design/" />
         </Helmet>
 
-        {
-          this.props.data.allMarkdownRemark.edges.map(({ node })=>{
-            return (
-              <div key={node.id}>
-                <div>
+        <PriceParents diameter="100" />
+
+        <div
+          css={{
+            // flexGrow: 1,
+            display: `flex`,
+            flexFlow: `row wrap`,
+            alignItems: `center`,
+            justifyContent: `center`,
+            '> div': {
+              position: `relative`,
+            },
+            ' > div a:first-child': {
+              position: `relative`,
+              display: `flex`,
+              alignItems: `center`,
+              justifyContent: `center`,
+              width: 120,
+              height: 120,
+              borderRadius: `50%`,
+              background: COLOR2,
+              color: COLOR4,
+              border: `solid thick ${COLOR2}`,
+              margin: 10,
+              zIndex: 1,
+              ':hover': {
+                zIndex: 0,
+              }
+            },
+            ' > div a:last-child': {
+              position: `absolute`,
+                top: 10,
+                left: 10,
+              display: `flex`,
+              alignItems: `center`,
+              justifyContent: `center`,
+              width: 120,
+              height: 120,
+              borderRadius: `50%`,
+              background: COLOR4,
+              color: COLOR2,
+              border: `solid thick ${COLOR2}`,
+              margin: 10,
+              zIndex: 0,
+              ':hover': {
+                zIndex: 2,
+              }
+            }
+          }}
+        >
+          {
+            this.props.data.allMarkdownRemark.edges.map(({ node })=>{
+              return (
+                <div key={node.id}>
                   <Link to={`/pricing/design/${node.frontmatter.pack.toLowerCase()}/`}>
-                    {node.frontmatter.pack}
+                    <div>
+                        {node.frontmatter.pack}
+                    </div>
+                  </Link>
+                  <Link to={`/pricing/design/${node.frontmatter.pack.toLowerCase()}/`}>
+                    <div>
+                        €{node.frontmatter.price}
+                    </div>
                   </Link>
                 </div>
-                <div>
-                  <Link to={`/pricing/design/${node.frontmatter.pack.toLowerCase()}/`}>
-                    €{node.frontmatter.price}
-                  </Link>
-                </div>
-              </div>
-            )
-          })
-        }
+              )
+            })
+          }
+        </div>
 
 
       </div>

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet"
 
 
 import { rhythm, scale } from "../utils/typography"
+import presets from "../utils/presets"
 import {
   COLOR1,
   COLOR2,
@@ -21,6 +22,8 @@ const contact = {
 
 class Index extends React.Component {
   render() {
+    console.log(this.props);
+    const indexImage = this.props.data.imageSharp.responsiveSizes
 
     // // Outputs array of images with 'sizes' key {big: ..., tiny: ...}
     // const images = {}
@@ -32,7 +35,18 @@ class Index extends React.Component {
 
 // TODO: description
     return (
-      <div>
+      <div
+        css={{
+          flexGrow: 1,
+          display: `flex`,
+          flexFlow: `column`,
+          ' > div': {
+            flexGrow: 1,
+            display: `flex`,
+            flexFlow: `column`,
+          }
+        }}
+      >
         <Helmet>
           <html lang="en" />
           <title>Graphic Design & websites - Exciting professional branding</title>
@@ -43,6 +57,14 @@ class Index extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com" />
         </Helmet>
 
+        <img
+          src={indexImage.src}
+          srcSet={indexImage.srcSet}
+          sizes={`${presets.phablet} 500px, 100vw`}
+          css={{
+            margin: `auto`,
+          }}
+        />
 
       </div>
     )
@@ -51,35 +73,16 @@ class Index extends React.Component {
 
 export default Index
 
-export const pageQuery = `
-query {
-  allFile (
-    mediaType: {regex: "/image/i"}
-  ) {
-    edges {
-      node {
-        id
-        ext
-        name
-        base
-        relativePath
-        type
-        mediaType
-        children {
-          ... on ImageSharp {
-            micro: responsiveSizes(maxWidth: 20) {
-              src
-              base64
-              aspectRatio
-            },
-            w410: responsiveSizes(maxWidth: 410) {
-              src
-              srcSet
-              aspectRatio
-            },
-          }
-        }
-      }
+export const pageQuery = graphql`
+query Index {
+  imageSharp (id: {regex: "/img.feed-500/"}) {
+    id
+    responsiveSizes (maxWidth: 500) {
+      base64
+      aspectRatio
+      src
+      srcSet
+      sizes
     }
   }
 }

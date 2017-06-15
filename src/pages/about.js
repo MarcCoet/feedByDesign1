@@ -55,7 +55,14 @@ class About extends React.Component {
           width: `80%`
         }}
       >
-        <img src={profile.photo} alt={profile.name} />
+        <img src={profile.photo} alt={profile.name}
+          css={{
+            width: 300,
+            height: 300,
+            objectFit: `cover`,
+            objectPosition: `0 0`,
+          }}
+        />
         <img src={profile.picto} alt={profile.name} />
         <h2>{profile.name}</h2>
         <blockquote>
@@ -67,7 +74,7 @@ class About extends React.Component {
         <div>
           {
             profile.skills.map((skill)=>{
-              return <h4 id={skill}>{skill}</h4>
+              return <h3 id={skill}>{skill}</h3>
             })
           }
 
@@ -88,7 +95,6 @@ class About extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/about/" />
         </Helmet>
 
-        <h1>Feed by Design</h1>
         <p css={{textAlign: `center`}}>
           Passionate individuals with complementary skills
         </p>

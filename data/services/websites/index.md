@@ -1,7 +1,7 @@
 ---
 title: Websites
 reference: services/websites
-image: 'dragonfly-illu-right_411.png'
+image: 'dragonflyWithFox.png'
 ---
 
 No Wordpress, no template, no bootstrap. Everything we make is custom made to carry your identity.

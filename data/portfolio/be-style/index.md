@@ -1,7 +1,7 @@
 ---
 slug: be-style
 name: Be Style
-date: '2016-11-30'
+date: "2017-02-30"
 metaDescription: 'Logo, identité visuelle,…'
 url: null
 facebook: null

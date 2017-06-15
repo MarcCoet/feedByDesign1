@@ -1,7 +1,7 @@
 ---
 slug: cubicle-consulting
 name: CuBIcle - consulting
-date: "2016–01-25"
+date: 2016–01-25
 metaDescription: 'site web, illustrations'
 url: 'http://cubicle-consulting.be/'
 facebook: null

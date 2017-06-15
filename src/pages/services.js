@@ -10,7 +10,7 @@ import {
   COLOR4
 } from "../utils/colors"
 
-import illuFoxAndDragonfly from '../../data/img/dragonfly-110.png'
+import illuFoxAndDragonfly from '../../data/img/dragonflyWithFox.png'
 
 class Services extends React.Component {
   constructor(props) {
@@ -52,8 +52,6 @@ class Services extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/services/" />
         </Helmet>
 
-
-
         <ul
           css={{
             listStyleType: `none`,
@@ -79,6 +77,7 @@ class Services extends React.Component {
                     onClick={()=>{this.handleClickSection(data.id)}}
                     css={{
                       color: `inherit`,
+                      cursor: `pointer`,
                     }}
                   >
                     {data.frontmatter.title}
@@ -94,8 +93,9 @@ class Services extends React.Component {
                       src={data.frontmatter.image.childImageSharp.responsiveSizes.src}
                       srcSet={data.frontmatter.image.childImageSharp.responsiveSizes.srcSet}
                       css={{
-                        height: 100,
+                        height: 50,
                         [presets.Phablet]: {
+                          height: 100,
                           position: `absolute`,
                             top: `${-100}`,
                             left: `${-120 * data.frontmatter.image.childImageSharp.responsiveSizes.aspectRatio}`,
@@ -107,7 +107,7 @@ class Services extends React.Component {
                         __html: data.html,
                       }}
                     />
-                  
+
                   </div>
                 </li>
               )

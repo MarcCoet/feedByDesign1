@@ -23,30 +23,29 @@ const formSettings = {
       {type:"email", name:"_replyto", placeholder:"your@email.here", required:"required"},
       {type:"submit", value:"send"}
     ],
-    before: [
-      <p css={{marginBottom: 30}}>
-        ...par <a href={`mailto:${typeof window !== 'undefined'?'info@wanna-play.be':''}`} target="_top">email
-        </a>, <a href='https://www.facebook.com/WannaPlayBE/' target='_blank'>Facebook
-        </a> ou en remplissant ce formulaire:
-      </p>
-    ]
+    // before: [
+    //   <p css={{marginBottom: 30}}>
+    //     ...par <a href={`mailto:${typeof window !== 'undefined'?'info@wanna-play.be':''}`} target="_top">email
+    //     </a>, <a href='https://www.facebook.com/WannaPlayBE/' target='_blank'>Facebook
+    //     </a> ou en remplissant ce formulaire:
+    //   </p>
+    // ]
   },
   success: {
     before: [
-      <p>bien joué !</p>,
-      <p>Viens nous suivre sur <a href='https://www.facebook.com/WannaPlayBE/' target='_blank'>Facebook</a></p>
+      <p>We've got you!</p>,
+      <p>Thanks for your message</p>
     ]
   },
   error: {
     before: [
       <p>!</p>,
       <p>
-        Quelque chose ne va pas...
+        Something went wrong
       </p>,
       <p>
-        Contacte-nous par <a href={`mailto:${typeof window !== 'undefined'?'info@wanna-play.be':''}`} target="_top">e-mail
-        </a> ou par <a href='https://www.facebook.com/messages/t/user:1309060675843842#_=_' target='_blank'>Facebook
-        </a> stp.
+        Please contact us by <a href={`mailto:${typeof window !== 'undefined'?'feedus@feedbydesign.com':''}`} target="_top">e-mail
+        </a> or via <a href='https://www.facebook.com/messages/t/feedbydesign' target='_blank'>Facebook</a>
       </p>
     ]
   }
@@ -57,7 +56,13 @@ const formSettings = {
 class About extends React.Component {
   render() {
     return (
-      <div>
+      <div
+        css={{
+          flexGrow: 1,
+          display: `flex`,
+          flexFlow: `column`,
+        }}
+      >
         <Helmet>
           <html lang="en" />
           <title>About</title>
@@ -68,7 +73,15 @@ class About extends React.Component {
           <meta property="og:url" content="https://www.feedbydesign.com/about/" />
         </Helmet>
 
-        <ContactForm formSettings={formSettings} location={this.props.location} />
+        <div
+          css={{
+            maxWidth: 500,
+            width: `80%`,
+            margin: `auto`,
+          }}
+        >
+          <ContactForm formSettings={formSettings} location={this.props.location} />
+        </div>
 
       </div>
     )

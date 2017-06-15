@@ -8,7 +8,8 @@ import {
   COLOR1,
   COLOR2,
   COLOR3,
-  COLOR4
+  COLOR4,
+  COLOR5
 } from "./colors"
 
 
@@ -35,8 +36,17 @@ const options = {
       textAlign: `center`,
       // color: COLOR3
     },
+    h3: {
+      margin: 0,
+      color: COLOR2,
+    },
     h4: {
-      // color: COLOR2
+      color: COLOR5,
+      margin: 0,
+
+    },
+    'h4:hover': {
+      color: COLOR1,
     },
     button: {
       // border: `none`
@@ -56,7 +66,7 @@ const options = {
       // lineHeight: 1.168
     },
     a: {
-      // color: `inherit`,
+      color: `inherit`,
       // textDecoration: `none`,
       // borderBottom: `thick solid`,
       // cursor: `pointer`,
@@ -69,7 +79,7 @@ const options = {
       display: `block`,
     },
     blockquote: {
-      borderLeft: `thick solid ${COLOR1}`,
+      borderLeft: `thick solid ${COLOR5}`,
       margin: `${rhythm(1)} 0`,
       paddingLeft: rhythm(1/2),
     },

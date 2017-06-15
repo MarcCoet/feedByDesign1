@@ -9,7 +9,8 @@ import {
   COLOR1,
   COLOR2,
   COLOR3,
-  COLOR4
+  COLOR4,
+  COLOR5
 } from "../utils/colors"
 
 
@@ -112,7 +113,13 @@ class ContactForm extends Component {
     })
 
     const form = (
-      <div>
+      <div
+        css={{
+          // maxWidth: 500,
+          // width: `100%`,
+          // margin: `auto`,
+        }}
+      >
         {this.props.formSettings.form.before}
         <form className='form' onSubmit={this.handleSubmit} name={this.props.formSettings.form.name} data-netlify="true" data-netlify-honeypot="botField"
           css={{
@@ -123,14 +130,20 @@ class ContactForm extends Component {
             '> *': {
               width: `100%`,
               marginBottom: 10,
-              color: COLOR1,
+              border: `solid 1px ${COLOR5}`,
+              padding: `2px 5px`,
+            },
+            '> *::placeholder': {
+              color: COLOR5,
             },
             '> input[type="submit"]' : {
-              width: `80%`,
-              height: rhythm(3),
+              color: COLOR2,
+              textTransform: `uppercase`,
+              // width: `80%`,
+              height: rhythm(2),
               background: COLOR4,
-              borderRadius: `50`,
-              border: `solid 3px ${COLOR2}`,
+              // borderRadius: `50`,
+              border: `solid 1px ${COLOR2}`,
               margin: `20px 0`,
               cursor: `pointer`,
               ':hover': {
@@ -148,30 +161,33 @@ class ContactForm extends Component {
     )
     const success = (
       <div css={{
-        position: `absolute`,
-          top: 0,
-          left: 0,
+        // position: `absolute`,
+        //   top: 0,
+        //   left: 0,
         height: `100%`,
         width: `100%`,
-        background: `inherit`,
+        color: COLOR4,
+        background: COLOR2,
         borderRadius: `inherit`,
         display: `flex`,
         flexFlow: `column`,
         justifyContent: `center`,
         alignItems: `center`,
-        textAlign: `center`,
         padding: 30,
-        '> p:first-child' : {
-          textAlign: `center`,
-          lineHeight: rhythm(2.8),
-          width: `80%`,
-          height: rhythm(3),
-          color: COLOR1,
-          background: COLOR2,
-          borderRadius: `50`,
-          border: `solid 3px ${COLOR2}`,
-          margin: `20px 0`
-        },
+        '> p': {
+          margin: `0 20px`,
+        }
+        // '> p:first-child' : {
+        //   textAlign: `center`,
+        //   lineHeight: rhythm(2.8),
+        //   width: `80%`,
+        //   height: rhythm(3),
+        //   color: COLOR1,
+        //   background: COLOR2,
+        //   borderRadius: `50`,
+        //   border: `solid 3px ${COLOR2}`,
+        //   margin: `20px 0`
+        // },
       }}>
         {this.props.formSettings.success.before}
         {this.props.formSettings.success.after}
@@ -180,12 +196,12 @@ class ContactForm extends Component {
 
     const error = (
       <div css={{
-        position: `absolute`,
-          top: 0,
-          left: 0,
+        // position: `absolute`,
+        //   top: 0,
+        //   left: 0,
         height: `100%`,
         width: `100%`,
-        background: COLOR3,
+        background: COLOR5,
         borderRadius: `inherit`,
         display: `flex`,
         flexFlow: `column`,
@@ -195,6 +211,7 @@ class ContactForm extends Component {
         '> p:first-child': {
           ...scale(1.5),
           fontWeight: `bold`,
+          color: COLOR4,
         },
         '> p': {
           textAlign: `center`,
@@ -207,7 +224,7 @@ class ContactForm extends Component {
     )
 
     return this.state.error ? error : (this.state.success ? success : form)
-    // return error
+    // return form
   }
 }
 
