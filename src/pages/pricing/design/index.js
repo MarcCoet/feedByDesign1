@@ -117,8 +117,11 @@ export default DesignPricing
 export const pageQuery = graphql`
 query DesignPricing {
   allMarkdownRemark (
-    id: {regex: "/pricing.design/i"},
-    sortBy: {order: ASC, fields: [frontmatter___price]}
+    sort: {order: ASC, fields: [frontmatter___price]},
+    filter: {
+      frontmatter: { hide: { ne: true } },
+      fileAbsolutePath: {regex: "/pricing.design/i"}
+    }
   ) {
     edges {
       node {

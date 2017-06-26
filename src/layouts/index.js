@@ -75,6 +75,9 @@ class DefaultLayout extends React.Component {
             flexGrow: 1,
             display: `flex`,
             flexFlow: `column`,
+            '> div' : {
+              padding: `${rhythm(3)} 0`,
+            },
           }}
         >
           {this.props.children()}

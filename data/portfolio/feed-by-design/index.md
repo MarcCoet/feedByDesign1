@@ -9,7 +9,6 @@ imgCover: feed-by-desig-nimgcover.png
 logoColor: feed-by-design-logo-color.png
 logoNB: feed-by-design-logo-nb.png
 packName: null
-hide: true
 colors:
   - '#2bc9af'
   - '#000000'

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from "react-helmet"
+import { Collapse } from 'react-collapse'
 
 import presets from "../utils/presets"
 import { rhythm, scale } from "../utils/typography"
@@ -22,7 +23,6 @@ class Services extends React.Component {
 
   handleClickSection(sectionId) {
     this.setState((prevState, props) => {
-      console.log(prevState.openSection)
       return {openSection: sectionId === prevState.openSection ? null : sectionId}
     })
   }
@@ -63,6 +63,8 @@ class Services extends React.Component {
             src={illuFoxAndDragonfly}
             css={{
               height: `${this.state.openSection === null ? 100 : 0}`,
+              opacity: `${this.state.openSection === null ? 1 : 0}`,
+              transition: `${this.state.openSection === null ? 'height .5s, opacity 0s ease 0s' : 'height .5s, opacity 0s ease .5s'}`,
             }}
           />
 
@@ -71,6 +73,9 @@ class Services extends React.Component {
               return (
                 <li
                   key={data.id}
+                  css={{
+                    position: `relative`,
+                  }}
                 >
 
                   <h2
@@ -82,33 +87,58 @@ class Services extends React.Component {
                   >
                     {data.frontmatter.title}
                   </h2>
-                  <div
-                    css={{
-                      display: `${this.state.openSection === data.id ? 'block' : 'none'}`,
-                      position: `relative`
-                    }}
-                  >
-
-                    <img
-                      src={data.frontmatter.image.childImageSharp.responsiveSizes.src}
-                      srcSet={data.frontmatter.image.childImageSharp.responsiveSizes.srcSet}
-                      css={{
-                        height: 50,
-                        [presets.Phablet]: {
-                          height: 100,
-                          position: `absolute`,
-                            top: `${-100}`,
-                            left: `${-120 * data.frontmatter.image.childImageSharp.responsiveSizes.aspectRatio}`,
-                        },
-                      }}
-                    />
+                  <Collapse isOpened={this.state.openSection === data.id} springConfig={{stiffness: 300, damping: 40}}>
                     <div
-                      dangerouslySetInnerHTML={{
-                        __html: data.html,
-                      }}
-                    />
+                      css={{
 
-                  </div>
+
+                        // display: `${this.state.openSection === data.id ? 'block' : 'none'}`,
+                        // position: `relative`,
+
+                        // height: `${this.state.openSection === data.id ? '452px' : '0px'}`,
+                        // transition: `height .5s, opacity .5s`,
+                        // overflowY: `${this.state.openSection === data.id ? 'hidden' : 'hidden'}`,
+
+                        // overflowX: `visible`,
+
+                        // overflow: `hidden`,
+                        // marginTop: `${this.state.openSection === data.id ? -100 : 0}`,
+                        // maxHeight: `${this.state.openSection === data.id ? 100 : 0}`,
+                        // transition: `${this.state.openSection === data.id ? 'max-height .5s ease' : 'margin-top .5s ease, max-height 0s ease .5s'}`,
+
+                      }}
+                    >
+
+                      <img
+                        src={data.frontmatter.image.childImageSharp.responsiveSizes.src}
+                        srcSet={data.frontmatter.image.childImageSharp.responsiveSizes.srcSet}
+                        css={{
+                          height: `${this.state.openSection === data.id ? 50 : 0}`,
+                          opacity: `${this.state.openSection === data.id ? 1 : 0}`,
+                          transition: `${this.state.openSection === data.id ? 'height .5s, opacity 0s ease 0s' : 'height .5s, opacity 0s ease .5s'}`,
+
+                          // display: `${this.state.openSection === data.id ? 'block' : 'none'}`,
+                          // height: 50,
+                          [presets.Phablet]: {
+                            height: `${this.state.openSection === data.id ? 100 : 0}`,
+                            // height: 100,
+                            position: `absolute`,
+                              // top: `${-100}`,
+                              // left: `${-120 * data.frontmatter.image.childImageSharp.responsiveSizes.aspectRatio}`,
+                              top: `${-50}`,
+                              // left: `${-120 * data.frontmatter.image.childImageSharp.responsiveSizes.aspectRatio}`,
+                              right: `${320}`,
+                          },
+                        }}
+                      />
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: data.html,
+                        }}
+                      />
+
+                    </div>
+                  </Collapse>
                 </li>
               )
             })
@@ -124,13 +154,13 @@ export default Services
 
 export const pageQuery = graphql`
 query Services {
-  strategyData: markdownRemark (id: {regex: "/data.services.strategy/i"}) {
+  strategyData: markdownRemark (fileAbsolutePath: {regex: "/data.services.strategy/i"}) {
     ...serviceData
   }
-  designData: markdownRemark (id: {regex: "/data.services.design/i"}) {
+  designData: markdownRemark (fileAbsolutePath: {regex: "/data.services.design/i"}) {
     ...serviceData
   }
-  webData: markdownRemark (id: {regex: "/data.services.websites/i"}) {
+  webData: markdownRemark (fileAbsolutePath: {regex: "/data.services.websites/i"}) {
     ...serviceData
   }
 }

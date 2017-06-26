@@ -52,7 +52,8 @@ class About extends React.Component {
     const Profile = ({ profile }) => (
       <div css={{
           maxWidth: 300,
-          width: `80%`
+          width: `80%`,
+          margin: `${rhythm(2)} 0`,
         }}
       >
         <img src={profile.photo} alt={profile.name}
@@ -74,7 +75,7 @@ class About extends React.Component {
         <div>
           {
             profile.skills.map((skill)=>{
-              return <h3 id={skill}>{skill}</h3>
+              return <h3 key={skill}>{skill}</h3>
             })
           }
 
@@ -84,7 +85,17 @@ class About extends React.Component {
     )
 
     return (
-      <div>
+      <div
+        css={{
+          // flexGrow: 1,
+          // display: `flex`,
+          // flexFlow: `column`,
+          // // justifyContent: `center`,
+          // // alignItems: `flex-start`,
+          // alignContent: `space-around`,
+          // width: `100%`,
+        }}
+      >
         <Helmet>
           <html lang="en" />
           <title>About</title>
@@ -100,6 +111,7 @@ class About extends React.Component {
         </p>
 
         <div css={{
+            flexGrow: 1,
             display: `flex`,
             flexFlow: `row wrap`,
             justifyContent: `space-around`,

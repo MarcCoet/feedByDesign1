@@ -1,9 +1,29 @@
 import * as PropTypes from "prop-types"
 import React from "react"
 import { Helmet } from 'react-helmet'
+import Link from 'gatsby-link'
 
 import typography, { rhythm, scale } from "../utils/typography"
 import presets from "../utils/presets"
+import {
+  COLOR1,
+  COLOR2,
+  COLOR3,
+  COLOR4
+} from "../utils/colors"
+
+const breakUrlStyle = {
+  whiteSpace: `pre-line`,
+  // wordBreak: `break-all`,
+
+  overflowWrap: `break-word`,
+  wordWrap: `break-word`,
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  // wordBreak: `break-all`,
+  /* Instead use this non-standard one: */
+  wordBreak: `break-word`,
+  hyphens: `auto`,
+}
 
 class ProjectTemplate extends React.Component {
   // static propTypes = {
@@ -13,6 +33,7 @@ class ProjectTemplate extends React.Component {
   // }
 
   render() {
+    console.log(this.props.pathContext.next)
     const projectDetails = this.props.data.md.frontmatter
     const logoColor = projectDetails.logoColor ? projectDetails.logoColor.childImageSharp.responsiveSizes: null
     const logoNB = projectDetails.logoNB ? projectDetails.logoNB.childImageSharp.responsiveSizes : null
@@ -34,8 +55,9 @@ class ProjectTemplate extends React.Component {
     return (
       <div
         css={{
-          border: `5px solid ${borderColor}`,
-          margin: 30
+          display: `flex`,
+          flexFlow: `column`,
+          margin: `auto 0`,
         }}
       >
 
@@ -49,132 +71,183 @@ class ProjectTemplate extends React.Component {
           <meta property="og:url" content={`https://www.feedbydesign.com/portfolio/${projectDetails.slug}/`} />
         </Helmet>
 
-        <div css={{
+        <div
+          css={{
             display: `flex`,
-            flexFlow: `row wrap`,
-            justifyContent: `space-around`,
-            alignItems: `center`,
-            ' *': {
-              color: `${textColor}`
-            }
           }}
         >
-
-          <div css={{ // LEFT COLUMN
-              display: `flex`,
-              flexFlow:`column`,
-              alignItems: `center`,
-              maxWidth: `80vw`,
-              margin: rhythm(1),
-              [presets.Desktop]: {
-                alignItems: `flex-start`,
-                maxWidth: `30vw`,
-              },
+          <Link to={this.props.pathContext.previous}
+            css={{
+              // width: `50%`,
+              flexGrow: 1,
+              textAlign: `left`,
+              // border: `solid 1px ${COLOR2}`,
+              margin: `0 30px`,
             }}
           >
-            {logoColor &&
-              <div css={{ // LOGOS
-                display: `flex`,
-                alignItems: `flex-end`,
-
-              }}>
-              <img
-                src={logoColor.src}
-                srcSet={logoColor.srcSet}
-                sizes={`(min-width: 500px) 300px, 150px`}
-              />
-              <img
-                src={logoNB.src}
-                srcSet={logoNB.srcSet}
-                sizes={`(min-width: 500px) 50px, 25px`}
-              />
-              </div>
-            }
-
-            <div css={{
-                display: `flex`,
-                flexFlow: `row wrap`,
-              }}
-            >
-              { // COLOR BALLS
-                projectDetails.colors.map((color)=>{
-                  return (
-                    <div key={color} css={{
-                        background: `${color}`,
-                        height: 30,
-                        width: 30,
-                        borderRadius: `50%`,
-                        margin: `20px 10px 20px 0`,
-                      }}
-                    ></div>
-                  )
-                })
-              }
-            </div>
-
-            <h3 css={{
-                marginBottom: rhythm(1/2),
-              }}
-            >
-              {projectDetails.name}
-            </h3>
-            {projectDetails.url && <p>{projectDetails.url}</p>}
-            {projectDetails.facebook && <p>{projectDetails.facebook}</p>}
-            {projectDetails.linkedIn && <p>{projectDetails.linkedIn}</p>}
-            <p css={{
-
-              }}
-            >
-              Lien site web
-              lien page Facebook
-              explication projet...
-              Bea poruptis eos eum vit late eles consed
-              qui que ium haruptatio. Del mint assedis
-              susamendam eum et dipientibus, velest.
-              nimoloreicit apelici llendam asped mi,
-              sum re et facea volo totas excerum nate
-              inim volo endelis
-            </p>
-          </div>
-
-          {screenImage &&
-            <img
-            src={screenImage.src}
-            srcSet={screenImage.srcSet}
-            sizes={`${presets.desktop} 40vw, 80vw`}
-            />
-          }
-
+            {`< PREVIOUS`}
+          </Link>
+          <Link to={this.props.pathContext.next}
+            css={{
+              // width: `50%`,
+              flexGrow: 1,
+              textAlign: `right`,
+              // border: `solid 1px ${COLOR2}`,
+              margin: `0 30px`,
+            }}
+          >
+            {`NEXT >`}
+          </Link>
         </div>
 
-
-        <div css={{
-            display: `flex`,
-            flexFlow: `row wrap`,
-            alignItems: `baseline`,
-            justifyContent: `center`,
-            marginBottom: 20,
+        <div
+          css={{
+            border: `5px solid ${borderColor}`,
+            margin: 30,
           }}
         >
-          {gallery &&
-            gallery.map((image)=>{
-              return (
+          <div
+            css={{
+              display: `flex`,
+              flexFlow: `row wrap`,
+              justifyContent: `space-around`,
+              alignItems: `center`,
+              ' *': {
+                color: `${textColor}`
+              }
+            }}
+          >
+
+            <div css={{ // LEFT COLUMN
+                display: `flex`,
+                flexFlow:`column`,
+                alignItems: `center`,
+                maxWidth: `80vw`,
+                margin: rhythm(1),
+                [presets.Desktop]: {
+                  alignItems: `flex-start`,
+                  maxWidth: `30vw`,
+                },
+              }}
+            >
+              {logoColor &&
+                <div css={{ // LOGOS
+                  display: `flex`,
+                  alignItems: `flex-end`,
+
+                }}>
                 <img
-                  key={image.id}
-                  src={image.src}
-                  srcSet={image.srcSet}
-                  sizes={`200px`}
+                  src={logoColor.src}
+                  srcSet={logoColor.srcSet}
+                  sizes={`(min-width: 500px) 300px, 150px`}
                   css={{
-                    width: 200,
-                    height: 200,
-                    objectFit: `cover`,
+                    maxWidth: 300,
+                    maxHeight: 300,
+                    marginRight: rhythm(1),
                   }}
                 />
-              )
-            })
-          }
-        </div>
+                <img
+                  src={logoNB.src}
+                  srcSet={logoNB.srcSet}
+                  sizes={`(min-width: 500px) 50px, 25px`}
+                />
+                </div>
+              }
 
+              <div css={{
+                  display: `flex`,
+                  flexFlow: `row wrap`,
+                  margin: `15px 0`,
+                  '> div': {
+                    height: 30,
+                    width: 30,
+                    borderRadius: `50%`,
+                    margin: `5px 10px 5px 0`,
+                  },
+                  '> div:last-child': {
+                    marginRight: 0,
+                  },
+                }}
+              >
+                { // COLOR BALLS
+                  projectDetails.colors.map((color)=>{
+                    return (
+                      <div key={color}
+                        css={{
+                          background: `${color}`,
+                        }}
+                      ></div>
+                    )
+                  })
+                }
+              </div>
+
+              <h3 css={{
+                  marginBottom: rhythm(1/2),
+                }}
+              >
+                {projectDetails.name}
+              </h3>
+              {projectDetails.url && <p css={breakUrlStyle}>{projectDetails.url}</p>}
+              {projectDetails.facebook && <p css={breakUrlStyle}>{projectDetails.facebook}</p>}
+              {projectDetails.linkedIn && <p css={breakUrlStyle}>{projectDetails.linkedIn}</p>}
+              <p css={{
+
+                }}
+              >
+                Lien site web
+                lien page Facebook
+                explication projet...
+                Bea poruptis eos eum vit late eles consed
+                qui que ium haruptatio. Del mint assedis
+                susamendam eum et dipientibus, velest.
+                nimoloreicit apelici llendam asped mi,
+                sum re et facea volo totas excerum nate
+                inim volo endelis
+              </p>
+            </div>
+
+            {screenImage &&
+              <img
+                src={screenImage.src}
+                srcSet={screenImage.srcSet}
+                sizes={`${presets.desktop} 40vw, 70vw`}
+                css={{
+                  // margin: rhythm(1),
+                }}
+              />
+            }
+
+          </div>
+
+
+          <div css={{
+              display: `flex`,
+              flexFlow: `row wrap`,
+              alignItems: `baseline`,
+              justifyContent: `center`,
+              marginBottom: 20,
+            }}
+          >
+            {gallery &&
+              gallery.map((image)=>{
+                return (
+                  <img
+                    key={image.id}
+                    src={image.src}
+                    srcSet={image.srcSet}
+                    sizes={`200px`}
+                    css={{
+                      width: 200,
+                      height: 200,
+                      objectFit: `cover`,
+                    }}
+                  />
+                )
+              })
+            }
+          </div>
+        </div>
 
 
       </div>
@@ -272,6 +345,7 @@ export default ProjectTemplate
 //
 // All GraphQL queries in Gatsby are run at build-time and
 // loaded as plain JSON files so have minimal client cost.
+
 export const pageQuery = graphql`
   query ProjectPage($id: String!, $galleryPathRegex: String!) {
     md: markdownRemark(id: { eq: $id }) {
@@ -316,11 +390,11 @@ export const pageQuery = graphql`
         }
       }
     }
-    gallery: allImageSharp (id: {regex: $galleryPathRegex}) {
+    gallery: allImageSharp (filter: {id: {regex: $galleryPathRegex}}) {
       edges {
         node {
           id
-          responsiveSizes (maxWidth: 300) {
+          responsiveSizes (maxWidth: 500) {
             base64
             aspectRatio
             src

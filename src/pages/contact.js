@@ -33,17 +33,17 @@ const formSettings = {
   },
   success: {
     before: [
-      <p>We've got you!</p>,
-      <p>Thanks for your message</p>
+      <p key="1">We've got you!</p>,
+      <p key="2">Thanks for your message</p>
     ]
   },
   error: {
     before: [
-      <p>!</p>,
-      <p>
+      <p key="1">!</p>,
+      <p key="2">
         Something went wrong
       </p>,
-      <p>
+      <p key="3">
         Please contact us by <a href={`mailto:${typeof window !== 'undefined'?'feedus@feedbydesign.com':''}`} target="_top">e-mail
         </a> or via <a href='https://www.facebook.com/messages/t/feedbydesign' target='_blank'>Facebook</a>
       </p>

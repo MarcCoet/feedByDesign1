@@ -25,7 +25,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     graphql(
       `
       {
-        allMarkdownRemark (id: {regex: "/portfolio/i"}) {
+        allMarkdownRemark (
+          sort: { order: DESC, fields: [frontmatter___date] },
+          filter: {
+            frontmatter: {
+              hide: { ne: true }
+            },
+            fileAbsolutePath: { regex: "/portfolio/i" }
+          }
+        ) {
       		edges {
             node {
               id
@@ -49,10 +57,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       // Instagram post. Since the scrapped Instagram data
       // already includes an ID field, we just use that for
       // each page's path.
-      _.each(result.data.allMarkdownRemark.edges, edge => {
+      _.each(result.data.allMarkdownRemark.edges, (edge, id, portfolioArray) => {
         // Gatsby uses Redux to manage its internal state.
         // Plugins and sites can use functions like "createPage"
         // to interact with Gatsby.
+        const next = id !== portfolioArray.length-1 ?
+          `/portfolio/${portfolioArray[id+1].node.frontmatter.slug}/` :
+          `/portfolio/${portfolioArray[0].node.frontmatter.slug}/`
+        const previous = id !== 0 ?
+          `/portfolio/${portfolioArray[id-1].node.frontmatter.slug}/` :
+          `/portfolio/${portfolioArray[portfolioArray.length-1].node.frontmatter.slug}/`
         createPage({
           // Each page is required to have a `path` as well
           // as a template component. The `context` is
@@ -63,6 +77,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           context: {
             id: edge.node.id,
             galleryPathRegex: `/portfolio.${edge.node.frontmatter.slug}.gallery/i`,
+            next,
+            previous
           },
         })
       })

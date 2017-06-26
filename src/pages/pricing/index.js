@@ -50,38 +50,38 @@ class Pricing extends React.Component {
 
 export default Pricing
 
-// export const pageQuery = graphql`
-// query Pricing {
-//   pricingDesign: allPricingDesignJson (
-//     sortBy: {order: ASC, fields: [price]}
-//   ){
-//     edges {
-//       node {
-//         id
-//         price
-//         logo
-//         businessCard
-//         files
-//         charter
-//       }
-//     }
-//   },
-//   pricingWebsites: allPricingWebsitesJson (
-//     sortBy: {order: ASC, fields: [price]}
-//   ){
-//     edges {
-//       node {
-//         id
-//         price
-//         name
-//         description
-//         webFunc
-//         otherFunc
-//       }
-//     }
-//   }
-// }
-// `
+export const pageQuery = graphql`
+query Pricing {
+  pricingDesign: allPricingDesignJson (
+    sort: {order: ASC, fields: [price]}
+  ){
+    edges {
+      node {
+        id
+        price
+        logo
+        businessCard
+        files
+        charter
+      }
+    }
+  },
+  pricingWebsites: allPricingWebsitesJson (
+    sort: {order: ASC, fields: [price]}
+  ){
+    edges {
+      node {
+        id
+        price
+        name
+        description
+        webFunc
+        otherFunc
+      }
+    }
+  }
+}
+`
 
 // query IndexRouteQuery {
 //   allMarkdownRemark(

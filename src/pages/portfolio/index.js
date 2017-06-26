@@ -18,10 +18,6 @@ class Portfolio extends React.Component {
     this.projects = this.props.data.projects.edges
     // reference to Feed by Design project
     this.feedProject = this.props.data.feedProject
-    // delete from array unwanted projects
-    for (let i = this.projects.length-1; i >= 0 ; i--) {
-      if (this.projects[i].node.frontmatter.hide) this.projects.splice(i, 1)
-    }
     // move not featured projects after the 4th position
     let numberOfUnwanted = 0
     for (let i = 0; i < 4; i++) {
@@ -93,7 +89,13 @@ class Portfolio extends React.Component {
 
   render() {
     return (
-      <div>
+      <div
+        css={{
+          flexGrow: 1,
+          display: `flex`,
+          alignItems: `center`,
+        }}
+      >
         <Helmet>
           <html lang="en" />
           <title>Portfolio</title>
@@ -243,8 +245,14 @@ export default Portfolio
 export const pageQuery = graphql`
 query Portfolio {
   projects: allMarkdownRemark (
-    id: {regex: "/portfolio/i"},
-    sortBy: {fields: [frontmatter___date], order: DESC}
+    sort: { order: DESC, fields: [frontmatter___date] },
+    filter: {
+      frontmatter: {
+        hide: { ne: true },
+        slug: { ne: "feed-by-design" }
+      },
+      fileAbsolutePath: { regex: "/portfolio/i" }
+    }
   ) {
     edges {
       node {

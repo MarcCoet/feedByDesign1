@@ -7,7 +7,8 @@ import {
   COLOR1,
   COLOR2,
   COLOR3,
-  COLOR4
+  COLOR4,
+  COLOR5,
 } from "../utils/colors"
 
 const links = [
@@ -18,6 +19,11 @@ const links = [
   {to: '/about/', text: 'feed by design'},
   {to: '/contact/', text: 'contact'},
 ]
+
+// const grow = css.keyframes('grow', { // optional name
+//   '0%': { height: 0},
+//   '100%': { transform: 'scale(1)' }
+// })
 
 class Menu extends React.Component {
   constructor(props) {
@@ -44,19 +50,20 @@ class Menu extends React.Component {
     return (
       <div
         css={{
-          position: `relative`,
-          height: 50,
+          // position: `relative`,
+          // height: 60,
         }}
       >
       <div
         onClick={()=>{this.setState({open: !this.state.open})}}
         css={{
-          position: this.state.open ? `fixed` : `absolute`,
+          position: `fixed`,
             top: 0,
             left: 0,
           width: `100%`,
-          height: `100%`,
-          background: `rgba(255, 255, 255, 0.5)`,
+          height: this.state.open ? `100%`: 40,
+          background: `rgb(255, 255, 255)`,
+          opacity: this.state.open ? `.5` : `0`,
           zIndex: this.state.open ? 1 : 3,
           [presets.Tablet]: {
             display: `none`
@@ -72,14 +79,15 @@ class Menu extends React.Component {
             // position: `relative`,
             display: `flex`,
             flexFlow: `column`,
-            background: `rgba(255, 255, 255, 0.3)`,
+            background: `rgba(255, 255, 255, 1)`,
             width: `100%`,
-            margin: `10px 0`,
+            padding: `5px 0`,
             textAlign: `center`,
             // height: 90,
             // top: -60,
             // overflow: `hidden`,
             zIndex: 2,
+            boxShadow: `0 2px 5px ${COLOR5}`,
             [presets.Tablet]: {
               position: `relative`,
               flexFlow: `row`,
@@ -103,13 +111,13 @@ class Menu extends React.Component {
                   key={link.to}
                   to={link.to}
                   css={{
-                    display: link.highlighted || this.state.open ? `block` : 'none',
-                    height: link.highlighted || this.state.open ? 30 : 0,
+                    // display: link.highlighted || this.state.open ? `block` : 'none',
                     textDecoration: `none`,
                     [presets.Tablet]: {
                       display: `block`,
                       height: 30,
-                    }
+                    },
+
                   }}
                 >
                   <h4
@@ -117,6 +125,17 @@ class Menu extends React.Component {
                       lineHeight: `30px`,
                       color: link.highlighted ? COLOR2 : `normal`,
                       textTransform: link.highlighted ? `uppercase` : `none`,
+                      height: link.highlighted || this.state.open ? 30 : 0,
+                      // fontSize: link.highlighted || this.state.open ? `initial` : `0px`,
+                      opacity: link.highlighted || this.state.open ? `1` : `0`,
+                      // lineHeight: link.highlighted || this.state.open ? 'initial' : `0px`,
+                      transition: `height .5s, opacity .5s`,
+                      [presets.Tablet]: {
+                        height: 30,
+                        opacity: 1,
+                      },
+
+
                     }}
                   >
                     {link.text}
