@@ -20,6 +20,7 @@ class Services extends React.Component {
       openSection: null
     }
   }
+  
 
   handleClickSection(sectionId) {
     this.setState((prevState, props) => {
