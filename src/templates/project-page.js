@@ -33,7 +33,6 @@ class ProjectTemplate extends React.Component {
   // }
 
   render() {
-    console.log(this.props.pathContext.next)
     const projectDetails = this.props.data.md.frontmatter
     const logoColor = projectDetails.logoColor ? projectDetails.logoColor.childImageSharp.responsiveSizes: null
     const logoNB = projectDetails.logoNB ? projectDetails.logoNB.childImageSharp.responsiveSizes : null
@@ -123,7 +122,7 @@ class ProjectTemplate extends React.Component {
                 flexFlow:`column`,
                 alignItems: `center`,
                 maxWidth: `80vw`,
-                margin: rhythm(1),
+                margin: `${rhythm(3)} ${rhythm(1)}`,
                 [presets.Desktop]: {
                   alignItems: `flex-start`,
                   maxWidth: `30vw`,

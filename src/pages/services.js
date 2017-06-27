@@ -63,9 +63,12 @@ class Services extends React.Component {
           <img
             src={illuFoxAndDragonfly}
             css={{
+              width: 158,
+              objectFit: `cover`,
               height: `${this.state.openSection === null ? 100 : 0}`,
               opacity: `${this.state.openSection === null ? 1 : 0}`,
-              transition: `${this.state.openSection === null ? 'height .5s, opacity 0s ease 0s' : 'height .5s, opacity 0s ease .5s'}`,
+              // transition: `${this.state.openSection === null ? 'height .5s, opacity .2s ease 0s' : 'height .5s, opacity 0s ease .5s'}`,
+              transition: 'height .5s, opacity .2s',
             }}
           />
 
