@@ -146,11 +146,14 @@ class ProjectTemplate extends React.Component {
                     marginRight: rhythm(1),
                   }}
                 />
-                <img
-                  src={logoNB.src}
-                  srcSet={logoNB.srcSet}
-                  sizes={`(min-width: 500px) 50px, 25px`}
-                />
+                {
+                  logoNB &&
+                  <img
+                    src={logoNB.src}
+                    srcSet={logoNB.srcSet}
+                    sizes={`(min-width: 500px) 50px, 25px`}
+                  />
+                }
                 </div>
               }
 

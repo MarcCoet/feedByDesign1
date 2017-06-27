@@ -7,7 +7,7 @@ url: null
 facebook: null
 imgCover: magalisilvestre-imgcover.png
 logoColor: magalisilvestre-logo-color.png
-logoNB: magalisilvestre-logo-nb.png
+logoNB: 
 screenImage: PORTFOLIO_ecran_magali-silvestre.png
 packName: "«\_dépannage\_»"
 notOnTop: true
